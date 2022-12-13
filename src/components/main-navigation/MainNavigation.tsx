@@ -1,5 +1,6 @@
 import { Button, Link } from "@chakra-ui/react";
 import { useClerk, useSession } from "@clerk/clerk-react";
+import { NavLink } from "react-router-dom";
 import "./_main-navigation.scss";
 
 function SignInButton() {
@@ -18,19 +19,15 @@ const MainNavigation = () => {
       </div>
       <div className="main-navigation-right">
         {session ? (
-          <div className="mr-24">{`Hello ${session?.user?.fullName || ""}!`}</div>
+          <div className="mr-24">{`Hello ${
+            session?.user?.fullName || ""
+          }!`}</div>
         ) : (
           <SignInButton />
         )}
-        <Link color="teal" href="/user" className="mr-24">
-          User
-        </Link>
-        <Link color="teal" href="/home" className="mr-24">
-          Services
-        </Link>
-        <Link color="teal" href="/home" className="mr-24">
-          About us
-        </Link>
+        <NavLink to="/user">User</NavLink>
+        <NavLink to="/service">Service</NavLink>
+        <NavLink to="/about-us">About us</NavLink>
       </div>
     </div>
   );
