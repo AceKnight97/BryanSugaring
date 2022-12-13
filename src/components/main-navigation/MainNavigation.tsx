@@ -1,6 +1,5 @@
-import { Link, Button } from "@chakra-ui/react";
-import { useClerk, UserButton, useSession } from "@clerk/clerk-react";
-import { NavLink } from "react-router-dom";
+import { Button, Link } from "@chakra-ui/react";
+import { useClerk, useSession } from "@clerk/clerk-react";
 import "./_main-navigation.scss";
 
 function SignInButton() {
