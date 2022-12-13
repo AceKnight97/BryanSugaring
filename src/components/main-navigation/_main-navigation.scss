@@ -1,0 +1,16 @@
+.main-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid blue;
+  height: 64px;
+  padding: 10px 24px;
+  &-left {
+  }
+  &-right {
+    display: flex;
+  }
+}
+.mr-24 {
+  margin-right: 24px;
+}
