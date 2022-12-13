@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/BryanSugaring/static/css/main.b1f21eda.css",
+    "main.js": "/BryanSugaring/static/js/main.f5541061.js",
+    "static/js/787.f83d78a2.chunk.js": "/BryanSugaring/static/js/787.f83d78a2.chunk.js",
+    "index.html": "/BryanSugaring/index.html",
+    "main.b1f21eda.css.map": "/BryanSugaring/static/css/main.b1f21eda.css.map",
+    "main.f5541061.js.map": "/BryanSugaring/static/js/main.f5541061.js.map",
+    "787.f83d78a2.chunk.js.map": "/BryanSugaring/static/js/787.f83d78a2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b1f21eda.css",
+    "static/js/main.f5541061.js"
+  ]
+}
