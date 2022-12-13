@@ -1,4 +1,4 @@
-import { Button, Link } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { useClerk, useSession } from "@clerk/clerk-react";
 import { NavLink } from "react-router-dom";
 import "./_main-navigation.scss";
@@ -13,9 +13,9 @@ const MainNavigation = () => {
   return (
     <div className="main-navigation">
       <div className="main-navigation-left">
-        <Link color="teal" href="/home" className="mr-24">
+        <NavLink to="/" className="mr-24">
           BrynSugaring
-        </Link>
+        </NavLink>
       </div>
       <div className="main-navigation-right">
         {session ? (
