@@ -1,19 +1,27 @@
-import { Button } from "@chakra-ui/react";
+import { Button, useDisclosure } from "@chakra-ui/react";
 import { useClerk, useSession } from "@clerk/clerk-react";
 import { NavLink } from "react-router-dom";
 import "./_main-navigation.scss";
 
-function SignInButton() {
+const SignInButton = () => {
   const clerk = useClerk();
-  return <Button onClick={() => clerk.openSignIn({})}>Sign In</Button>;
-}
+  return (
+    <Button
+      colorScheme="teal"
+      variant="link"
+      onClick={() => clerk.openSignIn({})}
+    >
+      Sign In/Up
+    </Button>
+  );
+};
 
 const MainNavigation = () => {
   const { session } = useSession();
   return (
     <div className="main-navigation">
       <div className="main-navigation-left">
-        <NavLink to="/" className="mr-24">
+        <NavLink to="/BryanSugaring" className="mr-24">
           BrynSugaring
         </NavLink>
       </div>
@@ -23,11 +31,19 @@ const MainNavigation = () => {
             session?.user?.fullName || ""
           }!`}</div>
         ) : (
-          <SignInButton />
+          <div className="mr-24">
+            <SignInButton />
+          </div>
         )}
-        <NavLink to="/user">User</NavLink>
-        <NavLink to="/service">Service</NavLink>
-        <NavLink to="/about-us">About us</NavLink>
+        <NavLink className="mr-24" to="/user">
+          User
+        </NavLink>
+        <NavLink to="/service" className="mr-24">
+          Service
+        </NavLink>
+        <NavLink to="/about-us" className="mr-24">
+          About us
+        </NavLink>
       </div>
     </div>
   );
