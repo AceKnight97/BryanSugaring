@@ -13,11 +13,15 @@ export const NAV_LINKS: INavLink[] = [
     name: "Service",
   },
   {
-    to: "/about-us",
-    name: "About us",
+    to: "/production",
+    name: "Production",
   },
   {
     to: "/recruitment",
     name: "Recruitment",
+  },
+  {
+    to: "/about-us",
+    name: "About us",
   },
 ];

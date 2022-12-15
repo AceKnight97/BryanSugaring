@@ -1,15 +1,17 @@
+@import "../../styles/color";
+
 .main-navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid blue;
+  border-bottom: 1px solid $teal500;
   height: 64px;
   padding: 10px 24px;
   &-left {
     &-title {
       font-weight: bold;
       font-size: 24px;
-      color: blue;
+      color: $teal500;
     }
   }
   &-right {
@@ -18,15 +20,9 @@
   &-item {
     display: flex;
     margin-right: 24px;
+    color: $teal500;
     &:hover {
       text-decoration: underline;
-    }
-  }
-  &-home {
-    display: flex;
-    margin-right: 24px;
-    &:hover {
-      text-decoration: underline blue;
     }
   }
 }

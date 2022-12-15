@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import MainNavigation from "../main-navigation/MainNavigation";
+import MainNavigation from "../main-navigation";
 import './_root-layout.scss';
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
@@ -7,9 +7,9 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
     <>
       <MainNavigation></MainNavigation>
       <main className="root-layout">{children}</main>
-      <div className="root-layout-footer">
+      {/* <div className="root-layout-footer">
         
-      </div>
+      </div> */}
     </>
   );
 };

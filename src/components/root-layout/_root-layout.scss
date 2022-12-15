@@ -1,14 +1,15 @@
 .root-layout{
     width: 100%;
-    height: calc(100% - 128px);
+    height: calc(100% - 64px);
+    // height: calc(100% - 128px);
     display: flex;
     justify-content: center;
     align-items: center;
-    &-footer{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 64px;
-        border-top: 1px solid blue;
-    }
+    // &-footer{
+    //     display: flex;
+    //     justify-content: space-between;
+    //     align-items: center;
+    //     height: 64px;
+    //     border-top: 1px solid blue;
+    // }
 }
