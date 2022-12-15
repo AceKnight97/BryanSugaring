@@ -6,9 +6,28 @@
   height: 64px;
   padding: 10px 24px;
   &-left {
+    &-title {
+      font-weight: bold;
+      font-size: 24px;
+      color: blue;
+    }
   }
   &-right {
     display: flex;
+  }
+  &-item {
+    display: flex;
+    margin-right: 24px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &-home {
+    display: flex;
+    margin-right: 24px;
+    &:hover {
+      text-decoration: underline blue;
+    }
   }
 }
 .mr-24 {

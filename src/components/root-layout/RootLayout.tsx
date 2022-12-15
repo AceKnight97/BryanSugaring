@@ -7,6 +7,9 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
     <>
       <MainNavigation></MainNavigation>
       <main className="root-layout">{children}</main>
+      <div className="root-layout-footer">
+        
+      </div>
     </>
   );
 };

@@ -1,6 +1,7 @@
-import { Button, useDisclosure } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { useClerk, useSession } from "@clerk/clerk-react";
 import { NavLink } from "react-router-dom";
+import { NAV_LINKS } from "./main-navigation.model";
 import "./_main-navigation.scss";
 
 const SignInButton = () => {
@@ -21,29 +22,25 @@ const MainNavigation = () => {
   return (
     <div className="main-navigation">
       <div className="main-navigation-left">
-        <NavLink to="/BryanSugaring" className="mr-24">
-          BrynSugaring
+        <NavLink to="/BryanSugaring" className="main-navigation-home">
+          <div className="main-navigation-left-title">BryanSugaring</div>
         </NavLink>
       </div>
       <div className="main-navigation-right">
-        {session ? (
-          <div className="mr-24">{`Hello ${
-            session?.user?.fullName || ""
-          }!`}</div>
-        ) : (
-          <div className="mr-24">
+        <div className="mr-24">
+          {session ? (
+            <div className="main-navigation-item-username">{`Hello ${
+              session?.user?.fullName || ""
+            }!`}</div>
+          ) : (
             <SignInButton />
-          </div>
-        )}
-        <NavLink className="mr-24" to="/user">
-          User
-        </NavLink>
-        <NavLink to="/service" className="mr-24">
-          Service
-        </NavLink>
-        <NavLink to="/about-us" className="mr-24">
-          About us
-        </NavLink>
+          )}
+        </div>
+        {NAV_LINKS.map((x) => (
+          <NavLink to={x.to} className="main-navigation-item" id={x.to}>
+            {x.name}
+          </NavLink>
+        ))}
       </div>
     </div>
   );

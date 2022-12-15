@@ -5,6 +5,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import RootLayout from "./components/root-layout/RootLayout";
 import AboutUs from "./pages/about-us";
 import Home from "./pages/home";
+import Recruitment from "./pages/recruitment";
 import Service from "./pages/service";
 import User from "./pages/user";
 
@@ -18,6 +19,7 @@ function App() {
             <Route path="/BryanSugaring" element={<Home />}></Route>
             <Route path="/service" element={<Service />}></Route>
             <Route path="/about-us" element={<AboutUs />}></Route>
+            <Route path="/recruitment" element={<Recruitment />}></Route>
             <Route
               path="/user"
               element={
