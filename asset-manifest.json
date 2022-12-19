@@ -1,15 +1,23 @@
 {
   "files": {
-    "main.css": "/BryanSugaring/static/css/main.e09442da.css",
-    "main.js": "/BryanSugaring/static/js/main.69ca1a93.js",
+    "main.css": "/BryanSugaring/static/css/main.15687364.css",
+    "main.js": "/BryanSugaring/static/js/main.81fcd04d.js",
     "static/js/787.f83d78a2.chunk.js": "/BryanSugaring/static/js/787.f83d78a2.chunk.js",
+    "static/media/address.png": "/BryanSugaring/static/media/address.98fc3d672a4c28fe73a7.png",
+    "static/media/landing6.jpg": "/BryanSugaring/static/media/landing6.240ca897a6721c35172a.jpg",
+    "static/media/landing4.jpeg": "/BryanSugaring/static/media/landing4.d344a34e1393ce03567d.jpeg",
+    "static/media/landing7.jpg": "/BryanSugaring/static/media/landing7.1e410d7a4b4645ab2c31.jpg",
+    "static/media/landing10.jpg": "/BryanSugaring/static/media/landing10.de6d2847a43f5d0f3e02.jpg",
+    "static/media/landing2.jpg": "/BryanSugaring/static/media/landing2.5bcdcf0dd7d4ecddd6d5.jpg",
+    "static/media/landing8.jpg": "/BryanSugaring/static/media/landing8.5ada4f6e9cf33782014b.jpg",
+    "static/media/landing1.jpg": "/BryanSugaring/static/media/landing1.e64df5f86aa99b8fef12.jpg",
     "index.html": "/BryanSugaring/index.html",
-    "main.e09442da.css.map": "/BryanSugaring/static/css/main.e09442da.css.map",
-    "main.69ca1a93.js.map": "/BryanSugaring/static/js/main.69ca1a93.js.map",
+    "main.15687364.css.map": "/BryanSugaring/static/css/main.15687364.css.map",
+    "main.81fcd04d.js.map": "/BryanSugaring/static/js/main.81fcd04d.js.map",
     "787.f83d78a2.chunk.js.map": "/BryanSugaring/static/js/787.f83d78a2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e09442da.css",
-    "static/js/main.69ca1a93.js"
+    "static/css/main.15687364.css",
+    "static/js/main.81fcd04d.js"
   ]
 }
