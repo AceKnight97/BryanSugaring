@@ -1,9 +1,4 @@
-import {
-  Button,
-  FormControl,
-  // Input,
-  Text,
-} from "@chakra-ui/react";
+import { Button, FormControl, Text } from "@chakra-ui/react";
 import { DatePicker, InputNumber } from "antd";
 import Carousel from "antd/es/carousel";
 import type { RangePickerProps } from "antd/es/date-picker";
@@ -55,7 +50,6 @@ const Home = () => {
       <Text as="b" color={"teal.500"} fontSize={24} marginTop={8}>
         Book Appointment
       </Text>
-      {/* isInvalid={isError} */}
       <FormControl onSubmit={onClickBookNow}>
         <InputNumber
           type="number"
