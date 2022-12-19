@@ -1,7 +1,40 @@
+@import "../../styles/color";
+
 .home {
   overflow: auto;
   width: 100%;
-  height: 100%;
+  // height: calc(100% - 32px);
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  &-landing-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &-book-appoinment {
+    color: $teal500;
+  }
+  &-book-now {
+    width: 100%;
+    height: 100%;
+    margin-top: 24px;
+  }
+  &-calendar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12px;
+  }
+  &-phone-number{
+    margin-top: 12px;
+    width: 100%;
+  }
+  &-address {
+    width: 100%;
+    height: 100%;
+    margin-top: 24px;
+  }
   .text {
     display: flex;
     justify-content: center;
