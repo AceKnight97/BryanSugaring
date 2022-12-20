@@ -8,16 +8,12 @@ import {
   DrawerOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useClerk, useSession } from "@clerk/clerk-react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { NAV_LINKS } from "./main-navigation.model";
 import "./_main-navigation.scss";
 
 const MainNavigation = () => {
-  const { session } = useSession();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { signOut } = useClerk();
-  const navigate = useNavigate();
 
   return (
     <>
@@ -39,7 +35,7 @@ const MainNavigation = () => {
                 <DrawerBody>
                   {NAV_LINKS.map((x, idx) => (
                     <NavLink
-                      id={x.to}
+                      key={`${idx + 1}. ${x.name}`}
                       to={x.to}
                       className="main-navigation-item"
                       onClick={onClose}
