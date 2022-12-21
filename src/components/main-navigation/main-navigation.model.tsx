@@ -4,10 +4,10 @@ export interface INavLink {
 }
 
 export const NAV_LINKS: INavLink[] = [
-  {
-    to: "/user",
-    name: "User",
-  },
+  // {
+  //   to: "/user",
+  //   name: "User",
+  // },
   {
     to: "/service",
     name: "Service",
@@ -23,5 +23,9 @@ export const NAV_LINKS: INavLink[] = [
   {
     to: "/about-us",
     name: "About us",
+  },
+  {
+    to: "/admin",
+    name: "Admin",
   },
 ];

@@ -1,8 +1,8 @@
 import React from 'react';
-import { useSession } from "@clerk/clerk-react";
+// import { useSession } from "@clerk/clerk-react";
 
 const Production = () => {
-  const { session } = useSession();
+  // const { session } = useSession();
   return <div className="">Production works!</div>;
 };
 

@@ -1,0 +1,37 @@
+@import "../../styles/color";
+
+.admin {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  width: 100%;
+  &-popup-form {
+    display: flex;
+    flex-direction: column;
+    &-img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px dashed;
+    }
+  }
+
+  .dis-none {
+    display: none;
+  }
+  .food-card-img {
+    width: 248px;
+    height: 248px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .anticon-file-image {
+      font-size: 4rem;
+    }
+    &-text {
+      margin-top: 0.5rem;
+    }
+  }
+}

@@ -12,9 +12,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ClerkProvider frontendApi={frontendApi}>
       <App />
-    </ClerkProvider>
   </React.StrictMode>
 );
 
