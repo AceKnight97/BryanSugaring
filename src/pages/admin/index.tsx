@@ -1,4 +1,4 @@
-import { Tabs } from "antd";
+import { Input, Tabs } from "antd";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import BookstHistory from "../../components/books-history";
 import PopupSchedule from "../../components/popup-schedule";
 import auth from "../../helper/auth";
 import { useMergeState } from "../../helper/customHooks";
+import AdminLogin from "./admin-login";
 import "./_admin.scss";
 
 interface IAdmin {
@@ -22,20 +23,28 @@ const Admin = (props?: IAdmin) => {
   // const { session } = useSession();
   const [state, setState] = useMergeState({
     activeTab: BOOKS_HISTORY,
+    logined: auth.isSuccess(),
+    username: "",
+    password: "",
   });
 
   const isAdmin = auth.getRole() === "Admin";
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log({auth})
+    console.log({ auth });
     // if (!auth.isSuccess()) {
     //   navigate("/BryanSugaring");
     //   console.log("logout");
     // }
   }, [props?.login]);
 
-  const { activeTab } = state;
+  const onLoginSuccess = () => {
+    console.log('fadfa')
+    setState({ logined: true });
+  };
+
+  const { activeTab, logined } = state;
 
   const onChangeTab = (activeTab = "") => {
     setState({ activeTab });
@@ -43,24 +52,28 @@ const Admin = (props?: IAdmin) => {
 
   return (
     <div className="admin">
-      <Tabs
-        activeKey={activeTab}
-        tabPosition="top"
-        onChange={onChangeTab}
-        className="mt-12"
-        items={[
-          {
-            label: "Booked Schedule",
-            key: BOOKS_HISTORY,
-            children: <BookstHistory />,
-          },
-          {
-            label: "Popups Schedule",
-            key: POPUP_SCHEDULE,
-            children: <PopupSchedule />,
-          },
-        ]}
-      />
+      {logined ? (
+        <Tabs
+          activeKey={activeTab}
+          tabPosition="top"
+          onChange={onChangeTab}
+          className="mt-12"
+          items={[
+            {
+              label: "Booked Schedule",
+              key: BOOKS_HISTORY,
+              children: <BookstHistory />,
+            },
+            {
+              label: "Popups Schedule",
+              key: POPUP_SCHEDULE,
+              children: <PopupSchedule />,
+            },
+          ]}
+        />
+      ) : (
+        <AdminLogin onLoginSuccess={onLoginSuccess} />
+      )}
       {/* <AdminPopupForm type={ECRUDType.ADD} /> */}
     </div>
   );

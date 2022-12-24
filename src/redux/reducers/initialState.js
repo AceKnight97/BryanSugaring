@@ -1,6 +1,8 @@
 export default {
   loading: {},
-  login: {},
+  login: {
+    isSuccess: false
+  },
   bookings: [],
   checkins: [],
   foodMasterData: [],

@@ -8,14 +8,16 @@ import {
   ModalHeader,
   ModalOverlay,
   Spinner,
-  useDisclosure,
+  useDisclosure
 } from "@chakra-ui/react";
-import { ReactNode } from "react";
+import { ReactNode, } from "react";
 import { useNavigate } from "react-router-dom";
+// import auth from "../helper/auth";
 import { useMergeState } from "../helper/customHooks";
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   const { onClose, isOpen, onOpen } = useDisclosure();
+  // const isAdmin = auth.getRole() === "Admin";
   const navigate = useNavigate();
   const [state, setState] = useMergeState({
     initOpen: true,
@@ -24,8 +26,13 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
       user: true
     }
   });
+
   const { initOpen, isLoaded, session } = state;
   const onCloseBtn = () => {
+    // if (!auth.isSuccess()) {
+    //   navigate("/BryanSugaring");
+    //   console.log("logout");
+    // }
     onClose();
     navigate("/BryanSugaring");
   };

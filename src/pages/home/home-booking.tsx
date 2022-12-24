@@ -17,7 +17,7 @@ const HomeBooking = () => {
   };
 
   const handleInputChange = (e: any) => {
-    onChange("phoneNumber", e.target.value);
+    onChange("phoneNumber", e?.target?.value);
   };
 
   const onChange = (key: string, value: any) => {
