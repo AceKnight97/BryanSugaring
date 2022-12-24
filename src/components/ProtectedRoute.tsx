@@ -10,19 +10,21 @@ import {
   Spinner,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useSession } from "@clerk/clerk-react";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMergeState } from "../helper/customHooks";
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
-  const { isLoaded, session } = useSession();
   const { onClose, isOpen, onOpen } = useDisclosure();
   const navigate = useNavigate();
   const [state, setState] = useMergeState({
     initOpen: true,
+    isLoaded: true,
+    session: {
+      user: true
+    }
   });
-  const { initOpen } = state;
+  const { initOpen, isLoaded, session } = state;
   const onCloseBtn = () => {
     onClose();
     navigate("/BryanSugaring");

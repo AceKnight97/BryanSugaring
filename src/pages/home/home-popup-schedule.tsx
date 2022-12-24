@@ -9,17 +9,39 @@ const { Panel } = Collapse;
 
 const MOCK: IHomePopupSchedule[] = [
   {
-    address: "address",
-    addressImg: "addressImg",
-    streetName: "streetName",
-    fromDate: "fromDate",
-    toDate: "toDate",
+    address: "District 1, HCM city",
+    addressImg: addressImgPng,
+    streetName: "24 Đặng Dung",
+    fromDate: "24/12/2022",
+    toDate: "24/01/2023",
+  },
+  {
+    address: "District 1, HCM city",
+    addressImg: addressImgPng,
+    streetName: "24 Đặng Dung",
+    fromDate: "24/12/2022",
+    toDate: "24/01/2023",
+  },
+  {
+    address: "District 1, HCM city",
+    addressImg: addressImgPng,
+    streetName: "24 Đặng Dung",
+    fromDate: "24/12/2022",
+    toDate: "24/01/2023",
+  },
+  {
+    address: "District 1, HCM city",
+    addressImg: addressImgPng,
+    streetName: "24 Đặng Dung",
+    fromDate: "24/12/2022",
+    toDate: "24/01/2023",
   },
 ];
 
 const HomePopupSchedule = () => {
   const [state, setState] = useMergeState({
   });
+
   const onChange = () => {};
   return (
     <>
@@ -27,12 +49,13 @@ const HomePopupSchedule = () => {
         as="b"
         fontSize={24}
         marginBottom={4}
+        marginTop={4}
         color="teal.500"
         placeContent="center"
       >
         Popup Schedule
       </Text>
-      <Collapse defaultActiveKey={["1"]} onChange={onChange}>
+      <Collapse defaultActiveKey={["1"]} onChange={onChange} >
         {MOCK.map((x, i) => (
           <Panel header={`${x.fromDate} - ${x.toDate}`} key={`${i + 1}`}>
             <HomePopup

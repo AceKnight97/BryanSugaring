@@ -1,10 +1,8 @@
-import { Input } from "antd";
-import React from "react";
+import { ECRUDType } from "../../enums";
 import { useMergeState } from "../../helper/customHooks";
 import { IHomePopupSchedule } from "../home/home.model";
 import AdminPopupForm from "./admin-popup-form";
 import "./_admin.scss";
-// import { useSession } from "@clerk/clerk-react";
 
 interface IAdmin {
   popUpForm: IHomePopupSchedule[];
@@ -13,11 +11,11 @@ interface IAdmin {
 const Admin = () => {
   // const { session } = useSession();
   const [state, setState] = useMergeState({
-    popUpForm: [],
   });
+
   return (
     <div className="admin">
-      <AdminPopupForm />
+      <AdminPopupForm type={ECRUDType.ADD} />
     </div>
   );
 };

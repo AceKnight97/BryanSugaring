@@ -1,10 +1,12 @@
+@import "../../styles/color";
+
 .root-layout {
   width: 100%;
-  // height: calc(100% - 64px);
-  // height: calc(100% - 128px);
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: $mainBg;
+
   // &-footer{
   //     display: flex;
   //     justify-content: space-between;

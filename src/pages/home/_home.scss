@@ -33,7 +33,7 @@
     height: 100%;
     margin-top: 24px;
   }
-  &-map {
+  &-popup {
     position: relative;
     margin-bottom: 12px;
     &-slider {
@@ -55,4 +55,8 @@
   .home {
     width: 400px;
   }
+}
+
+.ant-image-preview-img-wrapper::before {
+  height: 25% !important;
 }

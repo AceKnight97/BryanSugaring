@@ -13,19 +13,20 @@ const Home = () => {
   const onChange = () => {};
   return (
     <div className="home">
-      {/* <HomeLanding />
+      <HomeLanding />
 
-      <HomeBooking /> */}
+      <HomeBooking />
 
       <HomePopupSchedule />
-      {/* <Text
+      <Text
         color="teal.500"
         placeContent="center"
+        marginTop={4}
       >{`Phone: (+84) 819 541 897`}</Text>
       <Text
         color="teal.500"
         placeContent="center"
-      >{`Email: tttriet1997@gmail.com`}</Text> */}
+      >{`Email: tttriet1997@gmail.com`}</Text>
     </div>
   );
 };

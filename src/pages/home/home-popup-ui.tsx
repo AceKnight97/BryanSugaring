@@ -1,5 +1,5 @@
 import { Text } from "@chakra-ui/react";
-import { Collapse } from "antd";
+import { Image } from "antd";
 import { IHomePopupSchedule } from "./home.model";
 import "./_home.scss";
 
@@ -8,7 +8,7 @@ const HomePopup = (props?: IHomePopupSchedule) => {
 
   return (
     <>
-      <div className="home-map">
+      <div className="home-popup">
         {/* <StaticGoogleMap
           size="400x400"
           className="img-fluid"
@@ -29,7 +29,7 @@ const HomePopup = (props?: IHomePopupSchedule) => {
           min={12}
           max={18}
         ></Slider> */}
-        <img src={addressImg} alt="Address" />
+        <Image src={addressImg} alt="Address" />
       </div>
       <Text color="teal.500" placeContent="center" as="b">
         {streetName}

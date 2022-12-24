@@ -1,18 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.scss";
 import App from "./App";
+import "./index.scss";
 import reportWebVitals from "./reportWebVitals";
-import { ClerkProvider } from "@clerk/clerk-react";
-
-const frontendApi = process.env.REACT_APP_FE_SSO_KEY;
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-      <App />
+    <App />
   </React.StrictMode>
 );
 
