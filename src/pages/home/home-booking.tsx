@@ -8,6 +8,7 @@ const HomeBooking = () => {
   const [state, setState] = useMergeState({
     phoneNumber: undefined,
     selectedDate: undefined,
+    username: undefined,
     openDate: false,
     errMes: "",
   });
@@ -18,6 +19,10 @@ const HomeBooking = () => {
 
   const handleInputChange = (e: any) => {
     onChange("phoneNumber", e?.target?.value);
+  };
+
+  const handleInputUsernameChange = (e: any) => {
+    onChange("username", e?.target?.value);
   };
 
   const onChange = (key: string, value: any) => {
@@ -34,7 +39,7 @@ const HomeBooking = () => {
     onChange("selectedDate", selectingDate);
   };
 
-  const { phoneNumber, selectedDate, openDate, errMes } = state;
+  const { phoneNumber, selectedDate, openDate, errMes, username } = state;
 
   const onClickBookNow = () => {
     if (!phoneNumber) {
@@ -58,6 +63,7 @@ const HomeBooking = () => {
           type="number"
           status={!phoneNumber && errMes ? "error" : undefined}
         />
+        
         <DatePicker
           showTime
           open={openDate}
@@ -74,6 +80,13 @@ const HomeBooking = () => {
           getPopupContainer={(trigger: any) => trigger.parentElement}
           status={!selectedDate && errMes ? "error" : undefined}
         ></DatePicker>
+
+        <Input
+          value={username}
+          onChange={handleInputUsernameChange}
+          className="home-username"
+          placeholder="Username"
+        />
 
         <Text
           height={"18px"}

@@ -2,6 +2,7 @@ import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { Button, FormControl, Text } from "@chakra-ui/react";
 import { Input } from "antd";
 import { useMergeState } from "../../helper/customHooks";
+import { signInService } from "./admin.helper";
 import "./_admin.scss";
 
 interface IAdminLogin {
@@ -15,7 +16,7 @@ const AdminLogin = (props?: IAdminLogin) => {
     password: "blondeau",
     errMes: "",
   });
-  const { onLoginSuccess } = props || {};
+  const { onLoginSuccess = () => {} } = props || {};
 
   const { username, password, errMes } = state;
 
@@ -31,8 +32,10 @@ const AdminLogin = (props?: IAdminLogin) => {
     onChange("password", e?.target?.value);
   };
 
-  const onClickLogin = () => {
-    onLoginSuccess?.();
+  const onClickLogin = async () => {
+    const signInRes = await signInService({ phone: username, password });
+    console.log({ signInRes });
+    // onLoginSuccess();
   };
 
   return (
@@ -59,6 +62,16 @@ const AdminLogin = (props?: IAdminLogin) => {
             visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
           }
         />
+
+        <Text
+          height={"18px"}
+          color="red.500"
+          placeContent="center"
+          fontSize={12}
+        >
+          {errMes || " "}
+        </Text>
+
         <Button
           colorScheme="teal"
           className="home-book-now"

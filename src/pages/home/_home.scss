@@ -6,33 +6,41 @@
   display: flex;
   flex-direction: column;
   padding: 24px;
+
   &-landing-1 {
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
   &-book-appoinment {
     color: $teal500;
   }
+
   &-book-now {
     height: 100%;
     margin-top: 12px;
     width: 100%;
   }
+  
   &-calendar {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 12px;
   }
-  &-phone-number {
+
+  &-phone-number,
+  &-username {
     margin-top: 12px;
     width: 100%;
   }
+
   &-address {
     height: 100%;
     margin-top: 24px;
   }
+
   &-popup {
     position: relative;
     margin-bottom: 12px;

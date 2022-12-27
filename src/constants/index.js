@@ -25,7 +25,7 @@ export const PAGE_MANAGER = {
 };
 export const CONFIG = {
   // APOLLO_HOST_URL: "retail-store-java.herokuapp.com/graphql",
-  APOLLO_HOST_URL: "localhost:8080/graphql",
+  APOLLO_HOST_URL: "http://localhost:8080/graphql",
 };
 
 export const MESSAGES = {
