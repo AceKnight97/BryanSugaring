@@ -4,7 +4,9 @@ import { DatePicker, Input } from "antd";
 import { useEffect } from "react";
 import { ECRUDType } from "../../enums";
 import { useMergeState } from "../../helper/customHooks";
+import { IMutationResponse } from "../../models";
 import { IHomePopupSchedule } from "../home/home.model";
+import { createPopupService } from "./admin.helper";
 import "./_admin.scss";
 
 const data: IHomePopupSchedule[] = [];
@@ -28,7 +30,7 @@ const AdminPopupForm = (props: IAdminPopupForm) => {
   const { type } = props || {};
 
   useEffect(() => {
-    if(type === ECRUDType.EDIT) {
+    if (type === ECRUDType.EDIT) {
       // call API
     }
   }, []);
@@ -53,8 +55,9 @@ const AdminPopupForm = (props: IAdminPopupForm) => {
     onChange("toDate", selectingDate);
   };
 
-  const onClickSubmit = () => {
-    console.log({ state });
+  const onClickSubmit = async () => {
+    const createPopupRes: IMutationResponse = await createPopupService(state);
+    console.log({ createPopupRes });
   };
 
   const onChangeImg = async (event: any) => {

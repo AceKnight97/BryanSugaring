@@ -1,24 +1,27 @@
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { Button, FormControl, Text } from "@chakra-ui/react";
 import { Input } from "antd";
+import auth from "../../helper/auth";
 import { useMergeState } from "../../helper/customHooks";
+import { ISignIn, ISignInData } from "../../models";
 import { signInService } from "./admin.helper";
 import "./_admin.scss";
 
 interface IAdminLogin {
   onLoginSuccess?: () => void;
+  loginRequest?: (data: ISignInData) => void;
 }
 
 const AdminLogin = (props?: IAdminLogin) => {
-  // const { session } = useSession();
   const [state, setState] = useMergeState({
-    username: "bryan",
-    password: "blondeau",
+    username: "+84123123123",
+    password: "123456789",
     errMes: "",
+    loading: false,
   });
   const { onLoginSuccess = () => {} } = props || {};
 
-  const { username, password, errMes } = state;
+  const { username, password, errMes, loading } = state;
 
   const onChange = (key: string, value: any) => {
     setState({ [key]: value, errMes: "" });
@@ -33,9 +36,26 @@ const AdminLogin = (props?: IAdminLogin) => {
   };
 
   const onClickLogin = async () => {
-    const signInRes = await signInService({ phone: username, password });
-    console.log({ signInRes });
-    // onLoginSuccess();
+    setState({ loading: true });
+    const obj = { loading: false };
+    const signInRes: ISignIn = await signInService({
+      phone: username,
+      password,
+    });
+
+    if (signInRes.isSuccess) {
+      if (signInRes.data.user.role !== "Admin") {
+        Object.assign(obj, { errMes: "Your are not admin!" });
+        setState(obj);
+        return;
+      }
+      setState(obj);
+      auth.setDatalogin(signInRes.data.user);
+      props?.loginRequest?.(signInRes.data);
+      onLoginSuccess();
+      return;
+    }
+    setState({ errMes: signInRes.message, loading: false });
   };
 
   return (
@@ -50,17 +70,19 @@ const AdminLogin = (props?: IAdminLogin) => {
           onChange={handleChangeUserName}
           className="admin-login-username"
           placeholder="*Username"
-          status={!username && errMes ? "error" : undefined}
+          // status={!username && errMes ? "error" : undefined}
+          disabled={loading}
         />
         <Input.Password
           value={password}
           onChange={handleChangePassword}
           className="admin-login-password"
           placeholder="*Password"
-          status={!password && errMes ? "error" : undefined}
+          // status={!password && errMes ? "error" : undefined}
           iconRender={(visible) =>
             visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
           }
+          disabled={loading}
         />
 
         <Text
@@ -68,6 +90,7 @@ const AdminLogin = (props?: IAdminLogin) => {
           color="red.500"
           placeContent="center"
           fontSize={12}
+          marginTop={2}
         >
           {errMes || " "}
         </Text>
@@ -77,7 +100,9 @@ const AdminLogin = (props?: IAdminLogin) => {
           className="home-book-now"
           height={"40px"}
           onClick={onClickLogin}
-          marginTop={8}
+          marginTop={6}
+          disabled={!username || !password}
+          isLoading={loading}
         >
           Login
         </Button>

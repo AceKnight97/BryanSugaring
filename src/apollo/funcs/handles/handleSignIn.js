@@ -1,17 +1,15 @@
-import { client } from "../..";
+import { signInClient } from "../../apollo";
 import SIGN_IN from "../../mutations/signIn";
 
 const handleRootSignIn = async (variables) => {
   try {
-    console.log({ client, variables })
-    const result = await client.mutate({
+    const result = await signInClient.mutate({
       mutation: SIGN_IN,
       variables,
     });
-    const { rootSignIn } = result?.data;
-    return rootSignIn;
+    return result?.data?.signIn;
   } catch (error) {
-    console.log({error})
+    console.log({ error })
     throw error;
   }
 };

@@ -3,11 +3,6 @@ import HomeBooking from "./home-booking";
 import HomeLanding from "./home-landing";
 import HomePopupSchedule from "./home-popup-schedule";
 import "./_home.scss";
-import { Collapse } from "antd";
-
-const { Panel } = Collapse;
-const fromDate = "21/12/2022";
-const toDate = "21/01/2023";
 
 const Home = () => {
   const onChange = () => {};

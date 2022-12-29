@@ -1,17 +1,20 @@
-import { Input, Tabs } from "antd";
+import { Tabs } from "antd";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { loginRequest, logoutRequest } from "../../redux/action/login";
 import BookstHistory from "../../components/books-history";
 import PopupSchedule from "../../components/popup-schedule";
 import auth from "../../helper/auth";
 import { useMergeState } from "../../helper/customHooks";
 import AdminLogin from "./admin-login";
 import "./_admin.scss";
-
-interface IAdmin {
-  login: any;
-}
+import { ISignInData } from "../../models";
+import AdminPopupForm from "./admin-popup-form";
+import { ECRUDType } from "../../enums";
+import { IAdmin } from "./admin.models";
+import { getpopupScheduleService } from "./admin.helper";
+import moment from "moment";
 
 const TABS = {
   BOOKS_HISTORY: "BOOKS_HISTORY",
@@ -19,11 +22,10 @@ const TABS = {
 };
 const { BOOKS_HISTORY, POPUP_SCHEDULE } = TABS;
 
-const Admin = (props?: IAdmin) => {
-  // const { session } = useSession();
+const Admin: React.FunctionComponent = (props: IAdmin) => {
   const [state, setState] = useMergeState({
     activeTab: BOOKS_HISTORY,
-    logined: auth.isSuccess(),
+    logined: auth.isSuccess() && auth.getRole() === "Admin",
     username: "",
     password: "",
   });
@@ -31,8 +33,22 @@ const Admin = (props?: IAdmin) => {
   const isAdmin = auth.getRole() === "Admin";
   const navigate = useNavigate();
 
+  const fetchPopup = async () => {
+    const res = await getpopupScheduleService({
+      date: moment().format("DD/MM/YYYY"),
+      isAll: true,
+    });
+    console.log({ res });
+  };
+
   useEffect(() => {
-    console.log({ auth });
+    console.log({
+      auth: auth.getDataLogin(),
+      logined: state.logined,
+      si: auth.isSuccess(),
+      ad: auth.getRole(),
+    });
+    fetchPopup();
     // if (!auth.isSuccess()) {
     //   navigate("/BryanSugaring");
     //   console.log("logout");
@@ -40,7 +56,7 @@ const Admin = (props?: IAdmin) => {
   }, [props?.login]);
 
   const onLoginSuccess = () => {
-    console.log('fadfa')
+    console.log("fadfa");
     setState({ logined: true });
   };
 
@@ -52,7 +68,7 @@ const Admin = (props?: IAdmin) => {
 
   return (
     <div className="admin">
-      {logined ? (
+      {/* {logined ? (
         <Tabs
           activeKey={activeTab}
           tabPosition="top"
@@ -72,9 +88,16 @@ const Admin = (props?: IAdmin) => {
           ]}
         />
       ) : (
-        <AdminLogin onLoginSuccess={onLoginSuccess} />
-      )}
-      {/* <AdminPopupForm type={ECRUDType.ADD} /> */}
+        <AdminLogin
+          onLoginSuccess={onLoginSuccess}
+          loginRequest={props?.loginRequest}
+        />
+      )} */}
+      <AdminLogin
+        onLoginSuccess={onLoginSuccess}
+        loginRequest={props?.loginRequest}
+      />
+      <AdminPopupForm type={ECRUDType.ADD} />
     </div>
   );
 };
@@ -83,6 +106,12 @@ const mapStateToProps = (state: any) => ({
   login: state.login,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  loginRequest,
+  logoutRequest,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Admin);
+export default connect<any, any, {}>(
+  mapStateToProps,
+  mapDispatchToProps
+)(Admin);

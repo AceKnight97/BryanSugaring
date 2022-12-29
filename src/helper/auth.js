@@ -80,7 +80,7 @@ const auth = {
   },
 
   isSuccess() {
-    return localStorage.isSuccess;
+    return localStorage.isSuccess ? JSON.parse(localStorage.isSuccess) : false;
   },
 
   logout() {

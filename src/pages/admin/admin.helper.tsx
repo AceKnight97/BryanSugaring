@@ -1,4 +1,9 @@
+import moment from "moment";
+import fetchPopupSchedule from "../../apollo/funcs/fetchs/fetchPopupSchedule";
+import handleCreatePopup from "../../apollo/funcs/handles/handleCreatePopup";
 import handleRootSignIn from "../../apollo/funcs/handles/handleSignIn";
+import { IPopupSchedule } from "../../models";
+import { IScheduleInput } from "../../models/popupSchedule";
 
 interface ISignIn {
   phone: String;
@@ -7,10 +12,32 @@ interface ISignIn {
 
 export const signInService = async (params: ISignIn) => {
   try {
-    const res = await handleRootSignIn(params);
-    console.log({ res });
-    return res;
+    return await handleRootSignIn(params);
   } catch (error) {
-    console.log({ error });
+    return { isSuccess: false, message: "Incorrect password" };
+  }
+};
+
+export const createPopupService = async (params: any) => {
+  try {
+    const sendingData: IScheduleInput = {
+      address: params.address,
+      addressImg: params.addressImg,
+      streetName: params.streetName,
+      fromDate: moment(params.fromDate).format("DD/MM/YYYY"),
+      toDate: moment(params.toDate).format("DD/MM/YYYY"),
+    };
+    return await handleCreatePopup({ input: sendingData });
+  } catch (error) {
+    return { isSuccess: false, message: `${error}` };
+  }
+};
+
+
+export const getpopupScheduleService = async (params: IPopupSchedule) => {
+  try {
+    return await fetchPopupSchedule(params);
+  } catch (error) {
+    return { isSuccess: false, message: "" };
   }
 };

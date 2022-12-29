@@ -4,14 +4,14 @@ import AppFlowActions from "../../constants";
  *
  * @param {*} data
  */
-export function loginRequest(data) {
+export const loginRequest = (data: any) => {
   return { type: AppFlowActions.LOGIN_REQUEST, data };
-}
+};
 
 /**
  *
  * @param {*} data
  */
-export function logoutRequest(data) {
+export const logoutRequest = (data: any) => {
   return { type: AppFlowActions.LOGOUT_REQUEST, data };
-}
+};

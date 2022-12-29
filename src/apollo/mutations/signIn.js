@@ -11,6 +11,7 @@ const SIGN_IN = gql`
             ...${USER}
           }
         }
+        message
       }
     }
 `;

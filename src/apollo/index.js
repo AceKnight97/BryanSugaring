@@ -3,7 +3,7 @@ import {
   ApolloLink,
   HttpLink,
   InMemoryCache,
-  split,
+  split
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
@@ -14,6 +14,7 @@ import APP_FLOW_ACTIONS, { CONFIG } from "../constants";
 // import CONFIG from '../Config';
 import auth from "../helper/auth";
 import emitter from "../helper/eventEmitter";
+// import ApolloClient from "apollo-boost";
 
 const { APOLLO_HOST_URL } = CONFIG;
 
@@ -65,6 +66,10 @@ const createClient = async (
       headers: {
         ...headers,
         "access-token": token,
+        // 'Access-Control-Allow-Credentials': true,
+        // 'Access-Control-Allow-Origin': '*',
+        // 'Access-Control-Allow-Methods': 'GET',
+        // 'Access-Control-Allow-Headers': 'application/json',
       },
     }));
     return new ApolloClient({
@@ -106,10 +111,46 @@ const createClient = async (
   }
 };
 
+// headers: {
+//   'Access-Control-Allow-Credentials': true,
+//   'Access-Control-Allow-Origin': '*',
+//   'Access-Control-Allow-Methods': 'GET',
+//   'Access-Control-Allow-Headers': 'application/json',
+//   'allowedHeaders': ['sessionId', 'Content-Type'],
+//   'exposedHeaders': ['sessionId'],
+//   'origin': '*',
+//   'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   'preflightContinue': false,
+//   'Apollo-Require-Preflight': 'true',
+//   "Content-Type": "application/json",
+//   Accept: 'application/json',
+// }
+
 export const client = new ApolloClient({
   link,
   cache,
+  credentials: "same-origin", //include, same-origin
   defaultOptions,
+  fetchOptions: {
+    mode: 'no-cors',
+  },
+  // method: 'POST', // *GET, POST, PUT, DELETE, etc.
+  // mode: 'no-cors', // no-cors, *cors, same-origin
+  // headers: {
+  //   "Content-Type": "application/json",
+  // },
+  // redirect: 'follow', // manual, *follow, error
+  // referrerPolicy: 'same-origin', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 });
+
+
+// export const client = new ApolloClient({
+//   uri: "http://localhost:8080/graphql",
+//   headers: {
+//     'Content-Type': 'application/json',
+//     'Access-Control-Allow-Origin': '*',
+//     'Access-Control-Allow-Credentials': true,
+//   },
+// });
 
 export default createClient;
