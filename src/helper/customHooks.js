@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-// import emitter from "../Utils/eventEmitter";
+import emitter from "../helper/eventEmitter";
+
 
 export const useMergeState = (initialState) => {
   const [state, setState] = useState(initialState);
@@ -23,15 +24,15 @@ export const useUpdateEffect = (effect, dependencies = [], cleanup) => {
   }, dependencies);
 };
 
-// export const useEmitter = (key, callback, deps) => {
-//   useEffect(() => {
-//     if (!(key && callback)) {
-//       return;
-//     }
-//     const listener = emitter.addListener(key, callback);
-//     return () => {
-//       listener.remove();
-//     };
-//   }, [key, ...deps]);
-//   return emitter;
-// };
+export const useEmitter = (key, callback, deps) => {
+  useEffect(() => {
+    if (!(key && callback)) {
+      return;
+    }
+    const listener = emitter.addListener(key, callback);
+    return () => {
+      listener.remove();
+    };
+  }, [key, ...deps]);
+  return emitter;
+};

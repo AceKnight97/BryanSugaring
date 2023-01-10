@@ -33,11 +33,11 @@ export const createPopupService = async (params: any) => {
   }
 };
 
-
 export const getpopupScheduleService = async (params: IPopupSchedule) => {
   try {
     return await fetchPopupSchedule(params);
-  } catch (error) {
+  } catch (getpopupScheduleServiceErr) {
+    console.log({ getpopupScheduleServiceErr });
     return { isSuccess: false, message: "" };
   }
 };

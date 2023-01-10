@@ -1,35 +1,28 @@
 import moment from "moment";
 import React from "react";
-// import { isEmpty } from "../../../Utils";
 import { useMergeState } from "../../helper/customHooks";
-// import FoodOrderDrawer from "../../Modals/FoodOrderDrawer";
-// import DisplayStatus from "../../UI/DisplayStatus";
+import { IScheduleResponse } from "../../models/popupSchedule";
 import AntdTable from "../antd-table";
 import { IPopupShedule } from "./popup-schedule.model";
 import "./_popup-schedule.scss";
 
-const renderDate = (cell: any) => moment(cell).format("DD/MM/YYYY");
+const renderDate = (cell: any) => moment(cell, "x").format("DD/MM/YYYY");
 
 const PopupSchedule = (props?: IPopupShedule) => {
-  const [state, setState] = useMergeState({
-    foodOrderData: {},
-  });
+  const [state, setState] = useMergeState({});
 
   const onUpdateFoodOrder = (foodOrderData: any) => {
     setState({ foodOrderData });
   };
 
-  const { className, data } = props || {}; // index
-  //date, fetchHistory, status, notes
-  const { foodOrderData } = state;
+  const { className, data } = props || {};
 
   const generateColumns = () => {
     const columns = [
       {
         title: "Location",
         dataIndex: "location",
-        render: (cell: any) =>
-          `${cell.streetName || ""} ${cell?.address || ""}`,
+        render: (cell: any, row: IScheduleResponse, index: number) => `${row.streetName} ${row.address}`,
       },
       {
         title: "Start date",

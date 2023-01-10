@@ -22,8 +22,7 @@ const fetchPopupSchedule = async (variables: IPopupSchedule) => {
       query: POPUP_SCHEDULE,
       variables,
     });
-    const { orderHistory } = res?.data || {};
-    return orderHistory;
+    return res?.data?.popupsSchedule || [];
   } catch (error) {
     throw error;
   }
