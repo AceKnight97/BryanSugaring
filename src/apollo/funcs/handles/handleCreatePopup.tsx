@@ -8,7 +8,7 @@ const handleCreatePopup = async (variables: { input: IScheduleInput }) => {
       mutation: CREATE_SCHEDULE,
       variables,
     });
-    return result?.data;
+    return result?.data?.createSchedule;
   } catch (error) {
     console.log({ error });
     throw error;

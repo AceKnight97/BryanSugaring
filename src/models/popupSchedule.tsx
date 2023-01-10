@@ -1,8 +1,8 @@
-import { MomentInput } from "moment";
+import { Moment, MomentInput } from "moment";
 
 export interface IScheduleInput {
-  fromDate: String | MomentInput;
-  toDate: String | MomentInput;
+  fromDate: Moment;
+  toDate: Moment;
   streetName: String;
   address: String;
   addressImg: String;

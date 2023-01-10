@@ -1,18 +1,23 @@
 import { FileImageTwoTone } from "@ant-design/icons";
 import { Button, FormControl, Text } from "@chakra-ui/react";
-import { DatePicker, Input } from "antd";
+import { DatePicker, Input, notification } from "antd";
+import moment from "moment";
 import { useEffect } from "react";
 import { ECRUDType } from "../../enums";
+import { showSuccessMsg } from "../../helper";
 import { useMergeState } from "../../helper/customHooks";
 import { IMutationResponse } from "../../models";
-import { IHomePopupSchedule } from "../home/home.model";
+import { IScheduleResponse } from "../../models/popupSchedule";
+// import { IHomePopupSchedule } from "../home/home.model";
 import { createPopupService } from "./admin.helper";
 import "./_admin.scss";
 
-const data: IHomePopupSchedule[] = [];
+// const data: IHomePopupSchedule[] = [];
 
 interface IAdminPopupForm {
   type: ECRUDType;
+  popupObj?: IScheduleResponse;
+  onClickBack?: () => void;
 }
 
 const AdminPopupForm = (props: IAdminPopupForm) => {
@@ -27,11 +32,21 @@ const AdminPopupForm = (props: IAdminPopupForm) => {
   });
 
   const { streetName, addressImg, address, fromDate, toDate } = state;
-  const { type } = props || {};
+  const { type, popupObj } = props || {};
 
   useEffect(() => {
-    if (type === ECRUDType.EDIT) {
+    if (type === ECRUDType.VIEW) {
       // call API
+      console.log({ popupObj });
+      setState({
+        fromDate: popupObj?.fromDate
+          ? moment(popupObj.fromDate, "x")
+          : undefined,
+        toDate: popupObj?.toDate ? moment(popupObj.toDate, "x") : undefined,
+        streetName: popupObj?.streetName,
+        address: popupObj?.address,
+        addressImg: popupObj?.addressImg,
+      });
     }
   }, []);
 
@@ -58,6 +73,9 @@ const AdminPopupForm = (props: IAdminPopupForm) => {
   const onClickSubmit = async () => {
     const createPopupRes: IMutationResponse = await createPopupService(state);
     console.log({ createPopupRes });
+    if (createPopupRes.isSuccess) {
+      showSuccessMsg("Create a new pop-up schedule successfully!");
+    }
   };
 
   const onChangeImg = async (event: any) => {
@@ -68,9 +86,20 @@ const AdminPopupForm = (props: IAdminPopupForm) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = async () => {
+      console.log({ reader });
       const img = reader.result;
       setState({ addressImg: img });
     };
+  };
+
+  const onClickClearForm = () => {
+    setState({
+      fromDate: undefined,
+      toDate: undefined,
+      streetName: "",
+      address: "",
+      addressImg: "",
+    });
   };
 
   const onClickImg = () => {
@@ -82,9 +111,40 @@ const AdminPopupForm = (props: IAdminPopupForm) => {
 
   return (
     <div className="admin-popup-form">
-      <Text color="teal.500" fontWeight="bold" fontSize={24}>
-        {`${type === ECRUDType.ADD ? "Add" : "Update"} popup schedule`}
-      </Text>
+      <div className="flex flex-sb">
+        <Text color="teal.500" fontWeight="bold" fontSize={24}>
+          {`${
+            type === ECRUDType.ADD
+              ? "Add popup"
+              : type === ECRUDType.VIEW
+              ? "Popup"
+              : "Update popup"
+          } schedule`}
+        </Text>
+        {type === ECRUDType.ADD && (
+          <Button
+            fontSize={12}
+            height={"32px"}
+            colorScheme={"red"}
+            disabled={
+              !(streetName || addressImg || address || fromDate || toDate)
+            }
+            onClick={onClickClearForm}
+          >
+            Clear form
+          </Button>
+        )}
+        {type === ECRUDType.VIEW && (
+          <Button
+            fontSize={12}
+            height={"32px"}
+            colorScheme={"teal"}
+            onClick={props.onClickBack}
+          >
+            Back
+          </Button>
+        )}
+      </div>
 
       <FormControl
         onSubmit={onClickSubmit}
@@ -164,18 +224,20 @@ const AdminPopupForm = (props: IAdminPopupForm) => {
           {errMes || " "}
         </Text> */}
 
-        <Button
-          marginTop={8}
-          colorScheme="teal"
-          className="home-book-now"
-          height={"40px"}
-          onClick={onClickSubmit}
-          disabled={
-            !(streetName && addressImg && address && fromDate && toDate)
-          }
-        >
-          {`${type === ECRUDType.ADD ? "Add" : "Save"} popup`}
-        </Button>
+        {type !== ECRUDType.VIEW && (
+          <Button
+            marginTop={8}
+            colorScheme="teal"
+            className="home-book-now"
+            height={"40px"}
+            onClick={onClickSubmit}
+            disabled={
+              !(streetName && addressImg && address && fromDate && toDate)
+            }
+          >
+            {`${type === ECRUDType.ADD ? "Add" : "Save"} popup`}
+          </Button>
+        )}
       </FormControl>
     </div>
   );

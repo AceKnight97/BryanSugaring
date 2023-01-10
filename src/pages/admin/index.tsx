@@ -19,8 +19,9 @@ import "./_admin.scss";
 const TABS = {
   BOOKS_HISTORY: "BOOKS_HISTORY",
   POPUP_SCHEDULE: "POPUP_SCHEDULE",
+  ADD_NEW_POPUP: "ADD_NEW_POPUP",
 };
-const { BOOKS_HISTORY, POPUP_SCHEDULE } = TABS;
+const { BOOKS_HISTORY, POPUP_SCHEDULE, ADD_NEW_POPUP } = TABS;
 
 const Admin: React.FunctionComponent = (props: IAdmin) => {
   const [state, setState] = useMergeState({
@@ -36,6 +37,7 @@ const Admin: React.FunctionComponent = (props: IAdmin) => {
       date: moment().format("DD/MM/YYYY"),
       isAll: auth.getRole() === "Admin",
     });
+    console.log({popupsSchedule})
     setState({ popupsSchedule });
   };
 
@@ -50,11 +52,11 @@ const Admin: React.FunctionComponent = (props: IAdmin) => {
   useEffect(() => {
     console.log({
       auth: auth.getDataLogin(),
-      logined: state.logined,
+      logined,
       si: auth.isSuccess(),
       ad: auth.getRole(),
     });
-    
+
     if (logined) {
       fetchPopup();
     }
@@ -90,6 +92,11 @@ const Admin: React.FunctionComponent = (props: IAdmin) => {
               key: POPUP_SCHEDULE,
               children: <PopupSchedule data={popupsSchedule} />,
             },
+            {
+              label: "Add new popup",
+              key: ADD_NEW_POPUP,
+              children: <AdminPopupForm type={ECRUDType.ADD} />,
+            },
           ]}
         />
       ) : (
@@ -98,7 +105,6 @@ const Admin: React.FunctionComponent = (props: IAdmin) => {
           loginRequest={props?.loginRequest}
         />
       )}
-      <AdminPopupForm type={ECRUDType.ADD} />
     </div>
   );
 };

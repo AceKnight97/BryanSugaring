@@ -1,4 +1,3 @@
-import moment from "moment";
 import fetchPopupSchedule from "../../apollo/funcs/fetchs/fetchPopupSchedule";
 import handleCreatePopup from "../../apollo/funcs/handles/handleCreatePopup";
 import handleRootSignIn from "../../apollo/funcs/handles/handleSignIn";
@@ -24,8 +23,8 @@ export const createPopupService = async (params: any) => {
       address: params.address,
       addressImg: params.addressImg,
       streetName: params.streetName,
-      fromDate: moment(params.fromDate).format("DD/MM/YYYY"),
-      toDate: moment(params.toDate).format("DD/MM/YYYY"),
+      fromDate: params.fromDate?.format("DD/MM/YYYY"),
+      toDate: params.toDate?.format("DD/MM/YYYY"),
     };
     return await handleCreatePopup({ input: sendingData });
   } catch (error) {
